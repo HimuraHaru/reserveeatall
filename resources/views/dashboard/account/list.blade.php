@@ -33,6 +33,9 @@
                                         <th>
                                             Role
                                         </th>
+                                        <th>
+                                            Address
+                                        </th>
                                         </thead>
                                         <tbody>
                                         @foreach($accounts as $account)
@@ -47,10 +50,13 @@
                                                     {{ $account->age }}
                                                 </td>
                                                 <td>
+                                                    {{ $account->email }}
+                                                </td>
+                                                <td>
                                                     {{ $account->contact }}
                                                 </td>
                                                 <td>
-                                                    {{ $account->email }}
+                                                    {{ $account->address }}
                                                 </td>
                                                 <td>
                                                     {{ $account->role }}
