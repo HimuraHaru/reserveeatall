@@ -31,10 +31,10 @@
                                             Contact
                                         </th>
                                         <th>
-                                            Role
+                                            Address
                                         </th>
                                         <th>
-                                            Address
+                                            Role
                                         </th>
                                         </thead>
                                         <tbody>
