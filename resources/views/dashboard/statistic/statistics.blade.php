@@ -78,10 +78,10 @@
                                                     {{ $female }}
                                                 </td>
                                                 <td>
-                                                    {{ $reservations->where('reservationStatus', 'completed')->where('restaurantID', $restaurantID)->count() }}
+                                                    {{ $reservations->where('reservationStatus', 'completed')->count() }}
                                                 </td>
                                                 <td>
-                                                    {{ $reservations->where('reservationStatus', 'canceled')->where('$restaurantID', $restaurantID)->count() }}
+                                                    {{ $reservations->where('reservationStatus', 'canceled')->count() }}
                                                 </td>
                                                 {{--<td class="text-primary">--}}
                                                 {{--<a href="{{ route('view-menu', $restaurant->restaurantID ) }}">MENU/</a>--}}

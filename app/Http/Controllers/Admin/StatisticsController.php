@@ -32,8 +32,8 @@ class StatisticsController extends Controller
     public function generate(Request $request) {
         if (Helpers::checkIfAdmin()) {
 
-            $reservations = Reservation::where('reservationDate', 'LIKE', '%' . $request['year'] . '-' . $request['month'] . '%')->get();
             $restaurantID = Restaurant::findOrFail($request['restaurantID']);
+            $reservations = Reservation::where('reservationDate', 'LIKE', '%' . $request['year'] . '-' . $request['month'] . '%')->where('restaurantID', $restaurantID)->get();
             Carbon::createFromTime(12, 0, 0, 'Europe/London');
 
             $date = Carbon::createFromDate($request['year'], $request['month'])->format('M. Y');
