@@ -30,10 +30,11 @@ class StatisticsController extends Controller
     }
 
     public function generate(Request $request) {
+
         if (Helpers::checkIfAdmin()) {
 
-            $restaurantID = Restaurant::findOrFail($request['restaurantID']);
-            $reservations = Reservation::where('reservationDate', 'LIKE', '%' . $request['year'] . '-' . $request['month'] . '%')->where('restaurantID', $restaurantID)->get();
+            $restaurant = Restaurant::findOrFail($request['restaurantID']);
+            $reservations = Reservation::where('reservationDate', 'LIKE', '%' . $request['year'] . '-' . $request['month'] . '%')->where('restaurantID', $restaurant->restaurantID)->get();
             Carbon::createFromTime(12, 0, 0, 'Europe/London');
 
             $date = Carbon::createFromDate($request['year'], $request['month'])->format('M. Y');
@@ -58,7 +59,7 @@ class StatisticsController extends Controller
                 }
             }
 
-            return view('dashboard.statistic.statistics', compact('reservations', 'male', 'restaurantID', 'female', 'date'));
+            return view('dashboard.statistic.statistics', compact('reservations', 'male', 'restaurant', 'female', 'date'));
         }
 
         else {

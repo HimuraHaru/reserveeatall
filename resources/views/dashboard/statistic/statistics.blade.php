@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Generated Statistics for {{ $restaurantID->restaurantName }}</h4>
+                            <h4 class="card-title">Generated Statistics for {{ $restaurant->restaurantName }}</h4>
                         </div>
 
                         <div class="card-body">
@@ -19,6 +19,25 @@
                                 </div>
 
                             @else
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>Male</th>
+                                            <th>Female</th>
+                                            <th>Completed</th>
+                                            <th>Canceled</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ $male }}</td>
+                                                <td>{{ $female }}</td>
+                                                <td>{{ $reservations->where('reservationStatus', 'completed')->count() }}</td>
+                                                <td>{{ $reservations->where('reservationStatus', 'canceled')->count() }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <hr/>
+                                </div>
                             <div id="piechart"></div>
                             <script type="text/javascript" src="{{ asset('assets/admin/js/chart.js') }}"></script>
 
@@ -51,49 +70,6 @@
 
                                 <a href="{{ route('statistics') }}" class="btn btn-primary pull-right">Back</a>
                                 <div class="clearfix"></div>
-
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                        <th>
-                                            Male
-                                        </th>
-                                        <th>
-                                            Female
-                                        </th>
-                                        <th>
-                                            Completed
-                                        </th>
-                                        <th>
-                                            Canceled
-                                        </th>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    {{ $male }}
-                                                </td>
-                                                <td>
-                                                    {{ $female }}
-                                                </td>
-                                                <td>
-                                                    {{ $reservations->where('reservationStatus', 'completed')->count() }}
-                                                </td>
-                                                <td>
-                                                    {{ $reservations->where('reservationStatus', 'canceled')->count() }}
-                                                </td>
-                                                {{--<td class="text-primary">--}}
-                                                {{--<a href="{{ route('view-menu', $restaurant->restaurantID ) }}">MENU/</a>--}}
-                                                {{--<a href="{{ route('edit-restaurant', $restaurant->restaurantID ) }}">EDIT/</a>--}}
-                                                {{--<a href="{{ route('delete-restaurant', $restaurant->restaurantID ) }}">DELETE</a>--}}
-                                                {{--</td>--}}
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                    <hr/>
-                                </div>
 
                          </div>
 
