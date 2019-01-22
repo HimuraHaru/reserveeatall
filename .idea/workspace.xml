@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81884fe0-44e9-4670-b65e-1f4facbbad7d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/statistic/statistics.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/statistic/statistics.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="statistics.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/dashboard/statistic/statistics.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="83" column="120" lean-forward="false" selection-start-line="83" selection-start-column="120" selection-end-line="83" selection-end-column="120" />
+            <state relative-caret-position="801">
+              <caret line="95" column="36" lean-forward="true" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -559,12 +558,12 @@
       <workItem from="1548084988795" duration="979000" />
       <workItem from="1548087655162" duration="2739000" />
       <workItem from="1548141123089" duration="766000" />
-      <workItem from="1548180187943" duration="735000" />
+      <workItem from="1548180187943" duration="1230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206448000" />
+    <option name="totallyTimeSpent" value="206943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -979,8 +978,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/dashboard/statistic/statistics.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="83" column="120" lean-forward="false" selection-start-line="83" selection-start-column="120" selection-end-line="83" selection-end-column="120" />
+        <state relative-caret-position="801">
+          <caret line="95" column="36" lean-forward="true" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
           <folding />
         </state>
       </provider>

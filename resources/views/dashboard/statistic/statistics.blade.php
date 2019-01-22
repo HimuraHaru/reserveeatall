@@ -93,9 +93,6 @@
                                         </tbody>
                                     </table>
                                     <hr/>
-                                    <!--Paginate-->
-                                    <div>{{ $accounts->links() }}</div>
-                                    <!--End of Paginate-->
                                 </div>
 
                          </div>
