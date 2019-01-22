@@ -52,7 +52,53 @@
                                 <a href="{{ route('statistics') }}" class="btn btn-primary pull-right">Back</a>
                                 <div class="clearfix"></div>
 
-                            </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                        <th>
+                                            Male
+                                        </th>
+                                        <th>
+                                            Female
+                                        </th>
+                                        <th>
+                                            Completed
+                                        </th>
+                                        <th>
+                                            Canceled
+                                        </th>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    {{ $male }}
+                                                </td>
+                                                <td>
+                                                    {{ $female }}
+                                                </td>
+                                                <td>
+                                                    {{ $reservations->where('reservationStatus', 'completed')->count() }}
+                                                </td>
+                                                <td>
+                                                    {{ $reservations->where('reservationStatus', 'canceled')->count() }}
+                                                </td>
+                                                {{--<td class="text-primary">--}}
+                                                {{--<a href="{{ route('view-menu', $restaurant->restaurantID ) }}">MENU/</a>--}}
+                                                {{--<a href="{{ route('edit-restaurant', $restaurant->restaurantID ) }}">EDIT/</a>--}}
+                                                {{--<a href="{{ route('delete-restaurant', $restaurant->restaurantID ) }}">DELETE</a>--}}
+                                                {{--</td>--}}
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <hr/>
+                                    <!--Paginate-->
+                                    <div>{{ $accounts->links() }}</div>
+                                    <!--End of Paginate-->
+                                </div>
+
+                         </div>
 
                         </div>
                     </div>
