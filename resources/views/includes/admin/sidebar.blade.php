@@ -90,6 +90,24 @@
                     <p>Feedbacks</p>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('account') }}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Profile</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                    <i class="material-icons">content_paste</i>
+                    <p>Logout</p>
+                    <!--Logout-->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <!--Logout-->
+                </a>
+            </li>
         </ul>
     </div>
 </div>

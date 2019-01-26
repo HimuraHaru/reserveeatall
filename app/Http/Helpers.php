@@ -9,9 +9,9 @@ class Helpers
 
     public static function generateEmail($name)
     {
-        $name = strtolower(str_replace(' ', '', $name));
+        $removeSpecialChar = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
 
-        return $name . '@yahoo.com';
+        return strtolower($removeSpecialChar) . '@yahoo.com';
     }
 
     public static function role() {

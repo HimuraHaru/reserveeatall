@@ -37,30 +37,40 @@
                     @endif
 
                     <div class="wrap-input100 validate-input" data-validate="Enter name">
-                        <input id="name" type="text" class="input100" name="name" value="{{ old('name') }}" required>
+                        <input id="name" type="text" class="input100" name="name" value="{{ old('name') }}" required autofocus>
                         <span class="focus-input100" data-placeholder="Name"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Select gender">
-                        <select id="gender" type="text" class="input100" name="gender" required>
-                            <option selected disabled>Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                        <select id="gender" type="text" class="input100" name="gender" required autofocus>
+                            @if(empty(old('gender')))
+                                <option selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            @else
+                                @if(old('gender') == "Male")
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                @elseif(old('gender') == "Female")
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                @endif
+                            @endif
                         </select>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter age">
-                        <input id="age" type="text" class="input100" name="age" required>
+                        <input id="age" type="number" class="input100" name="age" value="{{ old('age') }}" required autofocus>
                         <span class="focus-input100" data-placeholder="Enter age"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter address">
-                        <input id="address" type="text" class="input100" name="address" required>
+                        <input id="address" type="text" class="input100" name="address" value="{{ old('address') }}" required autofocus>
                         <span class="focus-input100" data-placeholder="Enter address"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                        <input id="email" type="email" class="input100" name="email" value="{{ old('email') }}" required>
+                        <input id="email" type="email" class="input100" name="email" value="{{ old('email') }}" required autofocus>
                         <span class="focus-input100" data-placeholder="Email"></span>
                     </div>
 
@@ -75,7 +85,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter contact number">
-                        <input id="contact" type="text" class="input100" name="contact" value="63" required autofocus>
+                        <input id="contact" type="text" class="input100" name="contact" value="63" required autofocus autofocus>
                         <span class="focus-input100" data-placeholder="Enter contact number"></span>
                     </div>
 
@@ -96,11 +106,23 @@
                         <a class="txt2" href="{{ route('login') }}">
                             Login
                         </a>
+
+                        <br/>
+
+                        <span class="txt1">
+							Forgot your password?
+						</span>
+
+                        <a class="txt2" href="{{ route('password.request') }}">
+                            Reset
+                        </a>
+
                         <br/>
                         <span class="txt1">
                             <a class="txt2" href="{{ route('restaurant') }}">Back to restaurants.</a>
 						</span>
                     </div>
+
                 </form>
             </div>
         </div>
