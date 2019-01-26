@@ -53,17 +53,29 @@
 
                     <div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Already have an account?
 						</span>
 
-                        <a class="txt2" href="{{ route('register') }}">
-                            Sign Up
+                        <a class="txt2" href="{{ route('login') }}">
+                            Login
                         </a>
+
+                        <br/>
+
+                        <span class="txt1">
+							Forgot your password?
+						</span>
+
+                        <a class="txt2" href="{{ route('password.request') }}">
+                            Reset
+                        </a>
+
                         <br/>
                         <span class="txt1">
                             <a class="txt2" href="{{ route('restaurant') }}">Back to restaurants.</a>
 						</span>
                     </div>
+
                 </form>
             </div>
         </div>

@@ -19,7 +19,7 @@
                                 </a>
 
                                 <h2 class="white">{{ $restaurant->restaurantName }}</h2>
-                                <h3>Opens {{ $restaurant->operatingHours }}</h3>
+                                <h3>Opens {{ \App\Http\Helpers::operatingHours($restaurant->openingTime, $restaurant->closingTime) }}</h3>
                                 <h4>{{ $restaurant->restaurantAddress }}</h4>
                             </li>
                         @endforeach
