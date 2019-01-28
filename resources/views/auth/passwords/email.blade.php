@@ -50,11 +50,11 @@
                         <br/>
 
                         <span class="txt1">
-							Forgot your password?
+							Don't have an account?
 						</span>
 
-                        <a class="txt2" href="{{ route('password.request') }}">
-                            Reset
+                        <a class="txt2" href="{{ route('register') }}">
+                            Register
                         </a>
 
                         <br/>
