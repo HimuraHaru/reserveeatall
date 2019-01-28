@@ -53,11 +53,11 @@
 
                     <div class="text-center p-t-115">
 						<span class="txt1">
-							Already have an account?
+							Don’t have an account?
 						</span>
 
-                        <a class="txt2" href="{{ route('login') }}">
-                            Login
+                        <a class="txt2" href="{{ route('register') }}">
+                            Register
                         </a>
 
                         <br/>
