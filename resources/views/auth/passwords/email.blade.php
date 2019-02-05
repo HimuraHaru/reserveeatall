@@ -14,7 +14,7 @@
 						Reset Password
 					</span>
                     <span class="login100-form-title p-b-48">
-						<i class="zmdi zmdi-font"></i>
+                    <a class="logo" href=""></a>
 					</span>
                     @if ($errors->has('email'))
                         <span class="login100-form-title p-b-26" style="color:red">
@@ -50,12 +50,14 @@
                         <br/>
 
                         <span class="txt1">
-							Don't have an account?
+							Create Account?
 						</span>
 
                         <a class="txt2" href="{{ route('register') }}">
-                            Register
+                            Signup
                         </a>
+
+                      
 
                         <br/>
                         <span class="txt1">

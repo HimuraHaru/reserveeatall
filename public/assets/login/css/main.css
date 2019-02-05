@@ -62,10 +62,10 @@ a:focus {
 a:hover {
 	text-decoration: none;
   color: #6a7dfe;
-  color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-  color: -o-linear-gradient(left, #21d4fd, #b721ff);
-  color: -moz-linear-gradient(left, #21d4fd, #b721ff);
-  color: linear-gradient(left, #21d4fd, #b721ff);
+  color: -webkit-linear-gradient(left, #1ff177, #5c9233);
+  color: -o-linear-gradient(left, #1ff177, #5c9233);
+  color: -moz-linear-gradient(left, #1ff177, #5c9233);
+  color: linear-gradient(left, #1ff177, #5c9233);
 }
 
 /*---------------------------------------------*/
@@ -203,7 +203,7 @@ iframe {
   display: block;
   font-family: Poppins-Bold;
   font-size: 30px;
-  color: #333333;
+  color: #5c9233;
   line-height: 1.2;
   text-align: center;
 }
@@ -259,11 +259,11 @@ iframe {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 
-  background: #6a7dfe;
-  background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-  background: -o-linear-gradient(left, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(left, #21d4fd, #b721ff);
-  background: linear-gradient(left, #21d4fd, #b721ff);
+  background: #1ff177;
+  background: -webkit-linear-gradient(left, #1ff177, #5c9233);
+  background: -o-linear-gradient(left, #1ff177, #5c9233);
+  background: -moz-linear-gradient(left, #1ff177, #5c9233);
+  background: linear-gradient(left, #1ff177, #5c9233);
 }
 
 .focus-input100::after {
@@ -327,18 +327,18 @@ iframe {
 
 .btn-show-pass:hover {
   color: #6a7dfe;
-  color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-  color: -o-linear-gradient(left, #21d4fd, #b721ff);
-  color: -moz-linear-gradient(left, #21d4fd, #b721ff);
-  color: linear-gradient(left, #21d4fd, #b721ff);
+  color: -webkit-linear-gradient(left, #1ff177, #5c9233);
+  color: -o-linear-gradient(left, #1ff177, #5c9233);
+  color: -moz-linear-gradient(left, #1ff177, #5c9233);
+  color: linear-gradient(left, #1ff177, #5c9233);
 }
 
 .btn-show-pass.active {
   color: #6a7dfe;
-  color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-  color: -o-linear-gradient(left, #21d4fd, #b721ff);
-  color: -moz-linear-gradient(left, #21d4fd, #b721ff);
-  color: linear-gradient(left, #21d4fd, #b721ff);
+  color: -webkit-linear-gradient(left, #1ff177, #5c9233);
+  color: -o-linear-gradient(left, #1ff177, #5c9233);
+  color: -moz-linear-gradient(left, #1ff177, #5c9233);
+  color: linear-gradient(left, #1ff177, #5c9233);
 }
 
 
@@ -371,11 +371,11 @@ iframe {
   z-index: -1;
   width: 300%;
   height: 100%;
-  background: #a64bf4;
-  background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: -o-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  background: #5c9233;
+  background: -webkit-linear-gradient(right, #1ff177, #5c9233, #1ff177, #5c9233);
+  background: -o-linear-gradient(right, #1ff177, #5c9233, #1ff177, #5c9233);
+  background: -moz-linear-gradient(right, #1ff177, #5c9233, #1ff177, #5c9233);
+  background: linear-gradient(right, #1ff177, #5c9233, #1ff177, #5c9233);
   top: 0;
   left: -100%;
 
@@ -491,3 +491,28 @@ iframe {
 
 
 
+/*---------------------------------------------*/
+
+
+.container_box{
+  width: 100%;
+  height: auto;
+  margin: auto;
+  border: 3px solid #73AD21;
+
+}
+#nepoquad_logo{
+  background-image: url("../images/nepo_logo.png");
+  background-repeat: no-repeat;
+  width: 700px;
+  height: 900px auto;
+  max-width: 100%;
+  }
+
+  .logo { background: url("../images/nepo_logo.png") no-repeat;
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
