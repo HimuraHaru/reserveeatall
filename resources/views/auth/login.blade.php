@@ -14,7 +14,7 @@
 						Login
 					</span>
                     <span class="login100-form-title p-b-48">
-						<i class="zmdi zmdi-font"></i>
+                    <a class="logo" href="#"></a>
 					</span>
                     @if ($errors->has('email'))
                         <span class="login100-form-title p-b-26" style="color:red">
@@ -53,11 +53,21 @@
 
                     <div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Already have an account?
+						</span>
+
+                        <a class="txt2" href="{{ route('login') }}">
+                            Login
+                        </a>
+
+                        <br/>
+
+                        <span class="txt1">
+							Create Account?
 						</span>
 
                         <a class="txt2" href="{{ route('register') }}">
-                            Register
+                            Signup
                         </a>
 
                         <br/>
