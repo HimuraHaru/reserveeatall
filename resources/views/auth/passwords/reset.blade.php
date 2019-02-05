@@ -15,7 +15,7 @@
 						Reset Password
 					</span>
                     <span class="login100-form-title p-b-48">
-                    <a class="logo" href=""></a>
+                    <a class="logo" href="http://reserve-eatall.com/"></a>
 					</span>
                     @if ($errors->has('email'))
                         <span class="login100-form-title p-b-26" style="color:red">
@@ -77,4 +77,6 @@
             </div>
         </div>
     </div>
+    
+
 @endsection

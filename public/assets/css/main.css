@@ -905,3 +905,10 @@ footer a:hover
 		padding: 10px;
 	}
 }
+
+
+@media (max-width: 767px){
+#menu-pricing .item{
+	height:421px;
+}
+}
