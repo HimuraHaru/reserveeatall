@@ -22,9 +22,11 @@
 
                     <li><a href="{{route('restaurant')}}">restaurants</a></li>
                     @if(Auth::check() == false)
+                    <li><a href="http://127.0.0.1:8000/#about">About</a></li>
                         <li><a href="{{route('login')}}">login</a></li>
+                        
                     @else
-
+                    <li><a href="http://127.0.0.1:8000/#about">About</a></li>
                         <li>
                             <a href="{{route('dashboard')}}">
                                 @if(Auth::user()->role == "USER")
@@ -34,7 +36,7 @@
                                 @endif
                             </a>
                         </li>
-                        <li><a href="http://127.0.0.1:8000/#about">About</a></li>
+                        
                         <li><a href="{{route('logout')}}" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">logout</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
