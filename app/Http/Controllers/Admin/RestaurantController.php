@@ -224,8 +224,9 @@ class RestaurantController extends Controller
     public function deleteRestaurant(Request $request, $restaurantID)
     {
         if(Helpers::checkIfAdmin()) {
-//            $user = User::where('restaurantID', $restaurantID)->first();
-//            User::findOrFail($user->id)->delete();
+            $user = User::where('restaurantID', $restaurantID)->first();
+            User::findOrFail($user->id)->delete();
+            Food::where('restaurantID', $restaurantID)->delete();
             Restaurant::findOrFail($restaurantID)->delete();
 
             swal()->success('Successfully deleted!');
