@@ -221,11 +221,12 @@ class RestaurantController extends Controller
         return redirect('dashboard/restaurants');
     }
 
-    public function deleteRestaurant(Request $request, $id)
+    public function deleteRestaurant(Request $request, $restaurantID)
     {
         if(Helpers::checkIfAdmin()) {
-            User::where('restaurantID', $id)->delete();
-            Restaurant::findOrFail($id)->delete();
+            $user = User::where('restaurantID', $restaurantID)->first();
+            User::findOrFail($user->id)->delete();
+            Restaurant::findOrFail($restaurantID)->delete();
 
             swal()->success('Successfully deleted!');
             return back();
