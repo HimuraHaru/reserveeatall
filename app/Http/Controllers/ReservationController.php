@@ -32,19 +32,33 @@ class ReservationController extends Controller
             $restaurant = Restaurant::findOrFail($restaurantID);
             $user = auth()->id();
 
-            $reserve = new Reservation();
-            $reserve->userID = $user;
-            $reserve->restaurantID = $restaurant->restaurantID;
-            $reserve->reservationMessage = $request['message'];
-            $reserve->reservationSeats = $request['seats'];
-            $reserve->reservationDate = $request['datepicker'];
-            $reserve->reservationTime = $request['time'];
-            $reserve->reservationStatus = Helpers::pending();
-            $reserve->feedbackStatus = Helpers::pending();
-            $reserve->save();
+            $reservation = Reservation::where('userID', $user)
+                ->where('reservationTime', $request['time'])
+                ->where('reservationStatus', 'approved')
+                ->where('reservationDate', $request['datepicker'])
+                ->first();
 
-            swal()->success('Thank you! An sms message will be send if your reservation is approved.');
-            return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+            if($reservation == NULL) {
+                $reserve = new Reservation();
+                $reserve->userID = $user;
+                $reserve->restaurantID = $restaurant->restaurantID;
+                $reserve->reservationMessage = $request['message'];
+                $reserve->reservationSeats = $request['seats'];
+                $reserve->reservationDate = $request['datepicker'];
+                $reserve->reservationTime = $request['time'];
+                $reserve->reservationStatus = Helpers::pending();
+                $reserve->feedbackStatus = Helpers::pending();
+                $reserve->save();
+
+                swal()->success('Thank you! An sms message will be send if your reservation is approved.');
+                return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+            }
+
+            else {
+                swal()->error('Sorry. You already have an approved schedule within this schedule.');
+                return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+            }
+
         }
 
     }

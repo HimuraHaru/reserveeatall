@@ -41,7 +41,7 @@
                                                     {{ \App\Http\Helpers::operatingHours($restaurant->openingTime, $restaurant->closingTime) }}
                                                 </td>
                                                 <td class="text-primary">
-                                                    <a href="{{ route('view-menu', $restaurant->restaurantID ) }}">MENU/</a>
+                                                    {{--<a href="{{ route('view-menu', $restaurant->restaurantID ) }}">MENU/</a>--}}
                                                     <a href="{{ route('edit-restaurant', $restaurant->restaurantID ) }}">EDIT/</a>
                                                     <a href="{{ route('delete-restaurant', $restaurant->restaurantID ) }}">DELETE</a>
                                                 </td>
