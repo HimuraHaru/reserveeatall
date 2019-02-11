@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('assets/admin/img/sidebar-1.jpg') }}">
+<div class="sidebar" data-color="green" data-background-color="white" data-image="{{ asset('assets/admin/img/sidebar-1.jpg') }}">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -26,19 +26,19 @@
             @if(Auth::user()->role == "ADMIN")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
-                        <i class="material-icons">content_paste</i>
+                        <i class="material-icons">restaurant</i>
                         <p>Restaurants</p>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{{ route('statistics') }}" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">content_paste</i>
+                        <i class="material-icons">rate_review</i>
                         <p>Statistics</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('account-list') }}">
-                        <i class="material-icons">content_paste</i>
+                        <i class="material-icons">account_box</i>
                         <p>Accounts</p>
                     </a>
                 </li>
@@ -56,7 +56,7 @@
             @elseif(Auth::user()->role == "MANAGER")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
-                        <i class="material-icons">content_paste</i>
+                        <i class="material-icons">restaurant_menu</i>
                         <p>Restaurants</p>
                     </a>
                 </li>
@@ -86,20 +86,20 @@
             @endif
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('list-feedback') }}">
-                    <i class="material-icons">content_paste</i>
+                    <i class="material-icons">feedback</i>
                     <p>Feedbacks</p>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('account') }}">
-                    <i class="material-icons">content_paste</i>
+                    <i class="material-icons">persons</i>
                     <p>Profile</p>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                    <i class="material-icons">content_paste</i>
+                    <i class="material-icons">logout</i>
                     <p>Logout</p>
                     <!--Logout-->
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
