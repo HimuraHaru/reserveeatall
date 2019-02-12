@@ -6,7 +6,8 @@
 
 @section('content')
 
-    <br/><br/><br/><br/><br/><br/>
+@include('slider')
+    
     <section id="pricing" class="pricing">
         <div class="container">
             <div class="row">
@@ -35,5 +36,8 @@
 
         </div>
     </section>
+
+    
+    @include('includes.about')
 
 @endsection

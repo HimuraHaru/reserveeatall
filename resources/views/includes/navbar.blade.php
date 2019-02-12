@@ -9,19 +9,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
-                    {{--<img id="logo" src="{{ asset('assets/images/Logo_main.png') }}" class="logo img-responsive">--}}
+                <a class="navbar-brand" href="http://reserve-eatall.com/">
+                    <img id="logo" src="../assets/images/Logo_main.png" class="logo img-responsive">
                 </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="Food-fair-toggle">
                 <ul class="nav navbar-nav navbar-right">
+
+                
+
                     <li><a href="{{route('restaurant')}}">restaurants</a></li>
                     @if(Auth::check() == false)
+                    <li><a href="http://127.0.0.1:8000/#about">About</a></li>
                         <li><a href="{{route('login')}}">login</a></li>
+                        
                     @else
-
+                    <li><a href="http://127.0.0.1:8000/#about">About</a></li>
                         <li>
                             <a href="{{route('dashboard')}}">
                                 @if(Auth::user()->role == "USER")
@@ -31,6 +36,7 @@
                                 @endif
                             </a>
                         </li>
+                        
                         <li><a href="{{route('logout')}}" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">logout</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -46,3 +52,5 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.row -->
     </nav>
+
+   
