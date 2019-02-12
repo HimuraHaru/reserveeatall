@@ -18,47 +18,35 @@ class ReservationController extends Controller
 
     public function reserve(Request $request, $restaurantID)
     {
-        $validator = Validator::make($request->all(), [
-            'phone' => ['required', 'regex:/^(09|639)\d{9}$/', 'numeric', 'digits:12'],
-        ]);
 
-        if ($validator->fails()) {
-            return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve')
-                ->withErrors($validator)
-                ->withInput();
+        $restaurant = Restaurant::findOrFail($restaurantID);
+        $user = auth()->id();
+
+        $reservation = Reservation::where('userID', $user)
+            ->where('reservationTime', $request['time'])
+            ->where('reservationStatus', 'approved')
+            ->where('reservationDate', $request['datepicker'])
+            ->first();
+
+        if($reservation == NULL) {
+            $reserve = new Reservation();
+            $reserve->userID = $user;
+            $reserve->restaurantID = $restaurant->restaurantID;
+            $reserve->reservationMessage = $request['message'];
+            $reserve->reservationSeats = $request['seats'];
+            $reserve->reservationDate = $request['datepicker'];
+            $reserve->reservationTime = $request['time'];
+            $reserve->reservationStatus = Helpers::pending();
+            $reserve->feedbackStatus = Helpers::pending();
+            $reserve->save();
+
+            swal()->success('Thank you! An sms message will be send if your reservation is approved.');
+            return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
         }
 
         else {
-            $restaurant = Restaurant::findOrFail($restaurantID);
-            $user = auth()->id();
-
-            $reservation = Reservation::where('userID', $user)
-                ->where('reservationTime', $request['time'])
-                ->where('reservationStatus', 'approved')
-                ->where('reservationDate', $request['datepicker'])
-                ->first();
-
-            if($reservation == NULL) {
-                $reserve = new Reservation();
-                $reserve->userID = $user;
-                $reserve->restaurantID = $restaurant->restaurantID;
-                $reserve->reservationMessage = $request['message'];
-                $reserve->reservationSeats = $request['seats'];
-                $reserve->reservationDate = $request['datepicker'];
-                $reserve->reservationTime = $request['time'];
-                $reserve->reservationStatus = Helpers::pending();
-                $reserve->feedbackStatus = Helpers::pending();
-                $reserve->save();
-
-                swal()->success('Thank you! An sms message will be send if your reservation is approved.');
-                return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
-            }
-
-            else {
-                swal()->error('Sorry. You already have an approved schedule within this schedule.');
-                return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
-            }
-
+            swal()->error('Sorry. You already have an approved schedule within this schedule.');
+            return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
         }
 
     }
@@ -168,7 +156,7 @@ class ReservationController extends Controller
             $nexmo->message()->send([
                 'to'   => $user->contact,
                 'from' => 'Reserve Eat All',
-                'text' => 'Hello ' . ucwords($user->name) . ' Your reservation has been approved. See you on ' . $reservation->reservationDate . ', ' . Helpers::convertTime($reservation->reservationTime)
+                'text' => 'Hello ' . ucwords($user->name) . '. Your reservation has been approved. See you on ' . $reservation->reservationDate . ', ' . Helpers::convertTime($reservation->reservationTime)
             ]);
         }
 

@@ -79,7 +79,7 @@ class Helpers
 
     public static function reservationReminder($time) {
         $t = Carbon::create(0000, 00, 00, $time, 00, 00);
-        return $t->subMinutes(15)->format('h:i A');
+        return $t->subMinutes(30)->format('h:i A');
     }
 
     public static function reservationLate($time) {
@@ -96,6 +96,10 @@ class Helpers
     }
 
     public static function approved() {
+        return "approved";
+    }
+
+    public static function checkIn() {
         return "approved";
     }
 

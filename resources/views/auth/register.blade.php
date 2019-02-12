@@ -34,11 +34,22 @@
                             <br/>
                             <br/>
                         </span>
+                    @elseif ($errors->has('age'))
+                        <span class="login100-form-title p-b-26" style="color:red">
+                            You must be 17 years old above!
+                            <br/>
+                            <br/>
+                        </span>
                     @endif
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter name">
-                        <input id="name" type="text" class="input100" name="name" value="{{ old('name') }}" required autofocus>
-                        <span class="focus-input100" data-placeholder="Name"></span>
+                    <div class="wrap-input100 validate-input" data-validate="Enter first name">
+                        <input id="firstName" type="text" class="input100" name="firstName" value="{{ old('firstName') }}" required autofocus>
+                        <span class="focus-input100" data-placeholder="First Name"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter last name">
+                        <input id="lastName" type="text" class="input100" name="lastName" value="{{ old('lastName') }}" required autofocus>
+                        <span class="focus-input100" data-placeholder="Last Name"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Select gender">
@@ -85,7 +96,11 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter contact number">
-                        <input id="contact" type="text" class="input100" name="contact" value="63" required autofocus autofocus>
+                        @if(!empty(old('contact')))
+                            <input id="contact" type="text" class="input100" name="contact" value="{{old('contact')}}" required autofocus autofocus>
+                        @else
+                            <input id="contact" type="text" class="input100" name="contact" value="63" required autofocus autofocus>
+                        @endif
                         <span class="focus-input100" data-placeholder="Enter contact number"></span>
                     </div>
 

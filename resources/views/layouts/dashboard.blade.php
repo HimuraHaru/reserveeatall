@@ -39,12 +39,6 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            {{--<li class="nav-item ">--}}
-                {{--<a class="nav-link" href="./user.html">--}}
-                    {{--<i class="material-icons">person</i>--}}
-                    {{--<p>User Profile</p>--}}
-                {{--</a>--}}
-            {{--</li>--}}
             @if(Auth::user()->role == "ADMIN")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
@@ -64,22 +58,17 @@
                         <p>Accounts</p>
                     </a>
                 </li>
-                {{--<li class="nav-item dropdown">--}}
-                    {{--<a class="nav-link" href="#" id="reservationOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                        {{--<i class="material-icons">content_paste</i>--}}
-                        {{--<p>Reservations</p>--}}
-                    {{--</a>--}}
-                    {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="reservationOptions">--}}
-                        {{--<a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::pending()) }}">Pending</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::approved()) }}">Approved</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Completed</a>--}}
-                    {{--</div>--}}
-                {{--</li>--}}
             @elseif(Auth::user()->role == "MANAGER")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
                         <i class="material-icons">restaurant_menu</i>
                         <p>Restaurants</p>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('statistics') }}" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">rate_review</i>
+                        <p>Statistics</p>
                     </a>
                 </li>
                 <li class="nav-item dropdown">

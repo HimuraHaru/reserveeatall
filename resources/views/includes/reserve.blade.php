@@ -36,20 +36,11 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" required="required" placeholder="  &#xf007;  Name" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="email" class="form-control reserve-form empty iconified" id="email" required="required" placeholder="  &#xf1d8;  E-mail" disabled>
-                                    </div>
-                                    <div class="form-group">
                                         <input type="text" onfocus="(this.type='date')" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date" disabled>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone" required="required" placeholder="  &#xf095;  Phone" disabled>
-                                    </div>
                                     <div class="form-group">
                                         <input type="number" disabled class="form-control reserve-form empty iconified" name="seats" id="seats" required="required" placeholder="&#xf0c0;  Number of seats">
                                     </div>
@@ -91,21 +82,12 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" required="required" value="{{ $user->name }}" placeholder="  &#xf007;  Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" name="email" class="form-control reserve-form empty iconified" id="email" required="required" value="{{ $user->email }}" placeholder="  &#xf1d8;  E-mail">
-                                        </div>
-                                        <div class="form-group">
                                             <input type="text" onfocus="(this.type='date')" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date" min="{{ \Carbon\Carbon::now()->toDateString() }}">
                                             {{--<input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date">--}}
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="number" class="form-control reserve-form empty iconified" name="phone" id="phone" required="required" value="{{ $user->contact }}" placeholder="  &#xf095;  Phone">
-                                        </div>
                                         <div class="form-group">
                                             <input type="number" class="form-control reserve-form empty iconified" name="seats" id="seats" required="required" placeholder="&#xf0c0;  Number of seats">
                                         </div>

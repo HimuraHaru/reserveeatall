@@ -18,7 +18,7 @@ class StatisticsController extends Controller
     }
 
     public function index() {
-        if (Helpers::checkIfAdmin()) {
+        if (Helpers::checkIfAdmin() || Helpers::checkIfManager()) {
             $restaurants = Restaurant::orderBy('restaurantName', 'asc')->get();
 
             return view('dashboard.statistic.generate', compact('restaurants'));
@@ -34,6 +34,37 @@ class StatisticsController extends Controller
         if (Helpers::checkIfAdmin()) {
 
             $restaurant = Restaurant::findOrFail($request['restaurantID']);
+            $reservations = Reservation::where('reservationDate', 'LIKE', '%' . $request['year'] . '-' . $request['month'] . '%')->where('restaurantID', $restaurant->restaurantID)->get();
+            Carbon::createFromTime(12, 0, 0, 'Europe/London');
+
+            $date = Carbon::createFromDate($request['year'], $request['month'])->format('M. Y');
+
+            $male = 0;
+
+            foreach($reservations as $reservation) {
+                $user = User::where('id', $reservation->userID)->where('gender', 'Male')->count();
+
+                if($user != null) {
+                    $male += 1;
+                }
+            }
+
+            $female = 0;
+
+            foreach($reservations as $reservation) {
+                $user = User::where('id', $reservation->userID)->where('gender', 'Female')->count();
+
+                if($user != null) {
+                    $female += 1;
+                }
+            }
+
+            return view('dashboard.statistic.statistics', compact('reservations', 'male', 'restaurant', 'female', 'date'));
+        }
+
+        elseif (Helpers::checkIfManager()) {
+
+            $restaurant = Restaurant::findOrFail(Helpers::managerRestaurantID());
             $reservations = Reservation::where('reservationDate', 'LIKE', '%' . $request['year'] . '-' . $request['month'] . '%')->where('restaurantID', $restaurant->restaurantID)->get();
             Carbon::createFromTime(12, 0, 0, 'Europe/London');
 

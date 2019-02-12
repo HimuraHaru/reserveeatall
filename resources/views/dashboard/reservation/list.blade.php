@@ -125,7 +125,7 @@
                                                 <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::approved(), $reservation->reservationID] ) }}">Approve / </a>
                                                 <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::canceled(), $reservation->reservationID] ) }}">Cancel</a>
                                                 @elseif($category == \App\Http\Helpers::approved())
-                                                <a href="{{ route('list-reservation-post', [\App\Http\Helpers::approved(), \App\Http\Helpers::completed(), $reservation->reservationID] ) }}">Complete </a>
+                                                <a href="{{ route('list-reservation-post', [\App\Http\Helpers::approved(), \App\Http\Helpers::completed(), $reservation->reservationID] ) }}">Check In </a>
                                                 </td>
                                                 @endif
                                             </tr>

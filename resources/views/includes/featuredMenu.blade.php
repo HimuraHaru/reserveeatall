@@ -53,19 +53,19 @@
                                             @endif
                                         </p>
                                     </div>
-                                    <div class="half">
-                                        <p class="price">
-                                            @if(\App\Dislike::where('userID', \App\Http\Helpers::userID())->where('feedbackID', $feedback->feedbackID)->count() == 0)
-                                            <a style="text-decoration: none; color:inherit;" href="{{ route('dislike-feedback', [$feedback->feedbackID, $restaurant->restaurantID, 'featured'] ) }}">
-                                                <span style="font-size: 20px;"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
-                                            </a>
-                                                ({{ \App\Dislike::where('feedbackID', $feedback->feedbackID)->count() }})
-                                            @else
-                                                <span style="font-size: 20px;"><i class="fa fa-thumbs-down" style="color:#337ab7" aria-hidden="true"></i></span>
-                                                ({{ \App\Dislike::where('feedbackID', $feedback->feedbackID)->count() }})
-                                            @endif
-                                        </p>
-                                    </div>
+                                    {{--<div class="half">--}}
+                                        {{--<p class="price">--}}
+                                            {{--@if(\App\Dislike::where('userID', \App\Http\Helpers::userID())->where('feedbackID', $feedback->feedbackID)->count() == 0)--}}
+                                            {{--<a style="text-decoration: none; color:inherit;" href="{{ route('dislike-feedback', [$feedback->feedbackID, $restaurant->restaurantID, 'featured'] ) }}">--}}
+                                                {{--<span style="font-size: 20px;"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>--}}
+                                            {{--</a>--}}
+                                                {{--({{ \App\Dislike::where('feedbackID', $feedback->feedbackID)->count() }})--}}
+                                            {{--@else--}}
+                                                {{--<span style="font-size: 20px;"><i class="fa fa-thumbs-down" style="color:#337ab7" aria-hidden="true"></i></span>--}}
+                                                {{--({{ \App\Dislike::where('feedbackID', $feedback->feedbackID)->count() }})--}}
+                                            {{--@endif--}}
+                                        {{--</p>--}}
+                                    {{--</div>--}}
                                     @else
                                         <div class="half">
                                             <p class="per-head">
@@ -73,12 +73,12 @@
                                                     Like({{ \App\Like::where('feedbackID', $feedback->feedbackID)->count() }})
                                             </p>
                                         </div>
-                                        <div class="half">
-                                            <p class="price">
-                                                <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
-                                                    Dislike({{ \App\Dislike::where('feedbackID', $feedback->feedbackID)->count() }})
-                                            </p>
-                                        </div>
+                                        {{--<div class="half">--}}
+                                            {{--<p class="price">--}}
+                                                {{--<span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>--}}
+                                                    {{--Dislike({{ \App\Dislike::where('feedbackID', $feedback->feedbackID)->count() }})--}}
+                                            {{--</p>--}}
+                                        {{--</div>--}}
                                     @endif
                                 </div>
                             </div>

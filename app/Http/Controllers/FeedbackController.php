@@ -119,14 +119,14 @@ class FeedbackController extends Controller
                 ->paginate(10);
         }
 
-        elseif($request->has('filter') && $request->input('filter') == "mostDislikes") {
-            $feedbacks = Reservation::where('restaurantID', $restaurant->restaurantID)
-                ->where('feedbackStatus', Helpers::completed())
-                ->join('feedbacks', 'reservations.reservationID', '=', 'feedbacks.reservationID')
-                ->select('reservations.*', 'feedbacks.feedbackMessage', 'feedbacks.created_at', 'feedbacks.feedbackID', 'feedbacks.dislikeCount')
-                ->orderBy('feedbacks.dislikeCount', 'desc')
-                ->paginate(10);
-        }
+//        elseif($request->has('filter') && $request->input('filter') == "mostDislikes") {
+//            $feedbacks = Reservation::where('restaurantID', $restaurant->restaurantID)
+//                ->where('feedbackStatus', Helpers::completed())
+//                ->join('feedbacks', 'reservations.reservationID', '=', 'feedbacks.reservationID')
+//                ->select('reservations.*', 'feedbacks.feedbackMessage', 'feedbacks.created_at', 'feedbacks.feedbackID', 'feedbacks.dislikeCount')
+//                ->orderBy('feedbacks.dislikeCount', 'desc')
+//                ->paginate(10);
+//        }
 
         else {
             $feedbacks = Reservation::where('restaurantID', $restaurant->restaurantID)
