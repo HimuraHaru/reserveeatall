@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="../../assets/admin/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         Dashboard
@@ -33,18 +33,12 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active  ">
+            <li class="nav-item   ">
                 <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            {{--<li class="nav-item ">--}}
-                {{--<a class="nav-link" href="./user.html">--}}
-                    {{--<i class="material-icons">person</i>--}}
-                    {{--<p>User Profile</p>--}}
-                {{--</a>--}}
-            {{--</li>--}}
             @if(Auth::user()->role == "ADMIN")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
@@ -64,22 +58,17 @@
                         <p>Accounts</p>
                     </a>
                 </li>
-                {{--<li class="nav-item dropdown">--}}
-                    {{--<a class="nav-link" href="#" id="reservationOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                        {{--<i class="material-icons">content_paste</i>--}}
-                        {{--<p>Reservations</p>--}}
-                    {{--</a>--}}
-                    {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="reservationOptions">--}}
-                        {{--<a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::pending()) }}">Pending</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::approved()) }}">Approved</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Completed</a>--}}
-                    {{--</div>--}}
-                {{--</li>--}}
             @elseif(Auth::user()->role == "MANAGER")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
                         <i class="material-icons">restaurant_menu</i>
                         <p>Restaurants</p>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('statistics') }}" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">rate_review</i>
+                        <p>Statistics</p>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -370,6 +359,7 @@
 
     });
 </script>
+@include('includes.admin.footer')
 </body>
 
 </html>

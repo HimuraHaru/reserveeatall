@@ -21,7 +21,7 @@ class CreateFoodTable extends Migration
             $table->string('foodImage');
             $table->string('foodCategory');
             $table->unsignedInteger('restaurantID');
-            $table->foreign('restaurantID')->references('restaurantID')->on('restaurants')->onDelete('cascade');
+            $table->foreign('restaurantID')->references('restaurantID')->on('restaurants');
             $table->timestamps();
         });
     }

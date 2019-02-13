@@ -58,7 +58,22 @@ class CheckReservation extends Command
                 $nexmo->message()->send([
                     'to'   => $user->contact,
                     'from' => 'Reserve Eat All',
-                    'text' => 'Hello ' . ucwords($user->name) . '. Your reservation in ' . $reservation->reservationDate . ', will be in 15 minutes.'
+                    'text' => 'Hello ' . ucwords($user->name) . '. Your reservation in ' . $reservation->reservationDate . ', will be in 30 minutes.'
+                ]);
+
+//                $reservation->reservationStatus = Helpers::reminded();
+                $reservation->save();
+            }
+
+            elseif(Helpers::convertTime($reservationR->reservationTime) == $currentTime) {
+                $reservation = Reservation::findOrFail($reservationR->reservationID);
+
+                $user = User::findOrFail($reservation->userID);
+
+                $nexmo->message()->send([
+                    'to'   => $user->contact,
+                    'from' => 'Reserve Eat All',
+                    'text' => 'Hello ' . ucwords($user->name) . '. Your reservation in ' . $reservation->reservationDate . ', is the exact time. Please come before 15 minutes or your reservation will be canceled.'
                 ]);
 
                 $reservation->reservationStatus = Helpers::reminded();

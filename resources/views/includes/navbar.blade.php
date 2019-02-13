@@ -22,11 +22,11 @@
 
                     <li><a href="{{route('restaurant')}}">restaurants</a></li>
                     @if(Auth::check() == false)
-                    <li><a href="http://127.0.0.1:8000/#about">About</a></li>
+                    <li><a href="http://reserve-eatall.com/#about">About</a></li>
                         <li><a href="{{route('login')}}">login</a></li>
                         
                     @else
-                    <li><a href="http://127.0.0.1:8000/#about">About</a></li>
+                    <li><a href="http://reserve-eatall.com/#about">About</a></li>
                         <li>
                             <a href="{{route('dashboard')}}">
                                 @if(Auth::user()->role == "USER")

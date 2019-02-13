@@ -62,7 +62,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Logo Preview</label>
-                                            <img src="{{ asset('storage/assets/admin/img/restaurants/'.$restaurant->restaurantLogo) }}"/>
+                                            <img style="height: 186px" src="{{ asset('storage/assets/admin/img/restaurants/'.$restaurant->restaurantLogo) }}"/>
                                         </div>
                                     </div>
                                 </div>

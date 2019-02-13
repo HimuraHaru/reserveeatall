@@ -12,6 +12,7 @@
                         </div>
                         <div class="card-body">
                             <form method="GET" action="{{ route('generate') }}">
+                                @if(\App\Http\Helpers::checkIfAdmin())
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
@@ -24,6 +25,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
 
                                 <div class="row">
                                     <div class="col-md-5">
