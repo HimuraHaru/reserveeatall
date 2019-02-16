@@ -250,7 +250,7 @@ input.empty, textarea.empty {
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
 	background-color: transparent;
-	color: #fff;
+	color: rgb(238, 14, 14);
 }
 
 .navbar-brand {
@@ -312,7 +312,8 @@ nav.shrink .navbar-toggle {
 {
 	font-family: 'Roboto', sans-serif;
 	text-transform: uppercase;
-	color: #333;
+	color: #ffffff;
+	text-shadow: 1px 0px #000000;
 }
 .header-title
 {
@@ -912,3 +913,9 @@ footer a:hover
 	height:421px;
 }
 }
+
+.bmd-label-floating.imageforlogo{
+	height: 186px;
+}
+
+
