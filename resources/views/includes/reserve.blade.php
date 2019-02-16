@@ -70,12 +70,6 @@
                             </div>
                         </form>
                         @elseif(Auth::check())
-                            @if ($errors->has('phone'))
-                                <span class="login100-form-title p-b-26" style="color:red">
-                                It should start with 639 and the number should be a length of 12!
-                                <br/><br/><br/>
-                            </span>
-                            @endif
                             <form class="reservation-form" id="referenceUrl=reserve" method="post" action="{{ route('reserve', $restaurant->restaurantID ) }}">
                                 @csrf
                                 <input type="hidden" name="restaurantID" value="{{ $restaurant->restaurantID }}"/>

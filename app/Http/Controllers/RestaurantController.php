@@ -13,19 +13,37 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants = Restaurant::all();
+        if($request->has('search')) {
+            $restaurants = Restaurant::where('restaurantName', 'LIKE', '%' . $request['search'] . '%')->get();
+            if($restaurants->count() != 0) {
+                return redirect('/#search')->with('getData', $restaurants);
+            }
+            else {
+                return redirect('/#search')->with('getData', $restaurants);
+            }
+        }
+        else {
+            $restaurants = Restaurant::all();
+            return view('welcome', compact('restaurants'));
+        }
 
-        return view('welcome', compact('restaurants'));
     }
 
     public function viewRestaurant(Request $request, $restaurantID)
     {
         $restaurant = Restaurant::findOrFail($restaurantID);
-        $foods = Food::where('restaurantID', $restaurant->restaurantID)->get();
         $user = Auth::user();
         $time = Helpers::availableReservationTime($restaurant->openingTime, $restaurant->closingTime);
+
+        if($request->has('search')) {
+            $foods = Food::where('restaurantID', $restaurant->restaurantID)->where('foodName', 'LIKE', '%' . $request['search'] . '%')->get();
+        }
+
+        else {
+            $foods = Food::where('restaurantID', $restaurant->restaurantID)->get();
+        }
 
         if($request->has('filter') && $request->input('filter') == "latestDate") {
             $feedbacks = Reservation::where('restaurantID', $restaurant->restaurantID)

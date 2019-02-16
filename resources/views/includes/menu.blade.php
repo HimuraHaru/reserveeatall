@@ -24,34 +24,44 @@
         </div>
 
         <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <ul id="menu-pricing" class="menu-price">
-                        @foreach($foods as $food)
-                            <li class="item {{ $food->foodCategory }}">
+            <br/>
+            <form method="GET">
+                <input type="text" name="search" placeholder="Enter food name">
+                <button>SEARCH</button>
+            </form>
 
-                                <a href="#">
-                                    <img src="{{ asset('storage/assets/admin/img/restaurants/foods/' . $food->foodImage ) }}" class="img-responsive" alt="Food" >
-                                    <div class="menu-desc text-center">
+            @if($foods->count() >= 1)
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <ul id="menu-pricing" class="menu-price">
+                            @foreach($foods as $food)
+                                <li class="item {{ $food->foodCategory }}">
+
+                                    <a href="#">
+                                        <img src="{{ asset('storage/assets/admin/img/restaurants/foods/' . $food->foodImage ) }}" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc text-center">
                                                 <span>
                                                     <h3>{{ $food->foodName }}</h3>
                                                     {{ $food->foodIngredient }}
                                                 </span>
-                                    </div>
-                                </a>
+                                        </div>
+                                    </a>
 
-                                <h2 class="white">₱{{ $food->foodPrice }}</h2>
-                            </li>
-                        @endforeach
-
-                    </ul>
-
-                    <!-- <div class="text-center">
-                            <a id="loadPricingContent" class="btn btn-middle hidden-sm hidden-xs">Load More <span class="caret"></span></a>
-                    </div> -->
-
+                                    <h2 class="white">₱{{ $food->foodPrice }}</h2>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <ul id="menu-pricing" class="menu-price">
+                            <div class="alert alert-danger" role="alert">There's no food available!</div>
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
 
     </div>

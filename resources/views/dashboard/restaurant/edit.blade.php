@@ -52,6 +52,14 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
+                                            <label class="bmd-label-floating">Seats Available</label>
+                                            <input type="number" class="form-control" name="restaurantSeatsAvail" value="{{ $restaurant->restaurantSeatsAvail }}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
                                             <label class="bmd-label-floating">Logo</label>
                                         </div>
                                     </div>

@@ -53,7 +53,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="reservationOptions">
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::pending()) }}">Pending</a>
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::approved()) }}">Approved</a>
-                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Completed</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::checkIn()) }}">Checked In</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Checked Out</a>
                     </div>
                 </li>
 
@@ -66,7 +67,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="reservationOptions">
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::pending()) }}">Pending</a>
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::approved()) }}">Approved</a>
-                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Completed</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::checkIn()) }}">Checked In</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Checked Out</a>
                     </div>
                 </li>
             @endif

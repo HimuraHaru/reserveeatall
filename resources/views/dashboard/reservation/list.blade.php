@@ -30,7 +30,7 @@
                                     <th>
                                         Status
                                     </th>
-                                    @if($category == \App\Http\Helpers::pending() || $category == \App\Http\Helpers::completed())
+                                    @if($category == \App\Http\Helpers::pending() || $category == \App\Http\Helpers::checkIn() || $category == \App\Http\Helpers::completed())
                                     <th>
                                         Action
                                     </th>
@@ -52,13 +52,19 @@
                                                 {{ $reservation->reservationDate }}
                                             </td>
                                             <td>
-                                                {{ ucwords($reservation->reservationStatus) }}
+                                                @if($reservation->reservationStatus == \App\Http\Helpers::checkIn())
+                                                    Checked In
+                                                @elseif($reservation->reservationStatus == \App\Http\Helpers::completed())
+                                                    Checked Out
+                                                @else
+                                                    {{ ucwords($reservation->reservationStatus) }}
+                                                @endif
                                             </td>
                                             @if($category == \App\Http\Helpers::pending())
                                                 <td class="text-primary">
                                                     <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::canceled(), $reservation->reservationID] ) }}">Cancel</a>
                                                 </td>
-                                            @elseif($category == \App\Http\Helpers::completed())
+                                            @elseif($category == \App\Http\Helpers::completed() || $category == \App\Http\Helpers::checkIn())
                                                 <td class="text-primary">
                                                     @if($reservation->feedbackStatus == \App\Http\Helpers::pending())
                                                     <a href="{{ route('add-feedback', $reservation->reservationID) }}">Give Feedback</a>
@@ -96,7 +102,7 @@
                                         <th>
                                             Status
                                         </th>
-                                        @if($category == \App\Http\Helpers::pending() || $category == \App\Http\Helpers::approved())
+                                        @if($category != \App\Http\Helpers::completed())
                                         <th>
                                             Action
                                         </th>
@@ -118,14 +124,22 @@
                                                     {{ $reservation->reservationDate }}
                                                 </td>
                                                 <td>
-                                                    {{ ucwords($reservation->reservationStatus) }}
+                                                    @if($reservation->reservationStatus == \App\Http\Helpers::checkIn())
+                                                        Checked In
+                                                    @elseif($reservation->reservationStatus == \App\Http\Helpers::completed())
+                                                        Checked Out
+                                                    @else
+                                                        {{ ucwords($reservation->reservationStatus) }}
+                                                    @endif
                                                 </td>
                                                 <td>
                                                 @if($category == \App\Http\Helpers::pending())
                                                 <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::approved(), $reservation->reservationID] ) }}">Approve / </a>
                                                 <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::canceled(), $reservation->reservationID] ) }}">Cancel</a>
                                                 @elseif($category == \App\Http\Helpers::approved())
-                                                <a href="{{ route('list-reservation-post', [\App\Http\Helpers::approved(), \App\Http\Helpers::completed(), $reservation->reservationID] ) }}">Check In </a>
+                                                <a href="{{ route('list-reservation-post', [\App\Http\Helpers::approved(), \App\Http\Helpers::checkIn(), $reservation->reservationID] ) }}">Check In </a>
+                                                @elseif($category == \App\Http\Helpers::checkIn())
+                                                <a href="{{ route('list-reservation-post', [\App\Http\Helpers::checkIn(), \App\Http\Helpers::completed(), $reservation->reservationID] ) }}">Check Out </a>
                                                 </td>
                                                 @endif
                                             </tr>

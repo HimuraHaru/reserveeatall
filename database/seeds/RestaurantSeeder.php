@@ -26,9 +26,10 @@ class RestaurantSeeder extends Seeder
         $restaurant1 = Restaurant::create([
             'restaurantName' => 'Gustav',
             'restaurantAddress' => 'Angeles City',
-            'restaurantLogo' => 'gustav.jpg',
+            'restaurantLogo' => 'no_image.jpg',
             'openingTime' => 8,
             'closingTime' => 20,
+            'restaurantSeatsAvail' => '20',
             'created_at' => new Carbon()
         ]);
 
@@ -42,6 +43,7 @@ class RestaurantSeeder extends Seeder
             'created_at' => new Carbon(),
             'email_verified_at' => new Carbon(),
             'role' => 'MANAGER',
+            'contact' => '639774414592',
             'restaurantID' => 1 //the restaurantID is being generated through auto incrementing. So the ID of the next restaurant would be 2.
         ]);
 

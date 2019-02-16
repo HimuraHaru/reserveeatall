@@ -58,6 +58,17 @@
                         <p>Accounts</p>
                     </a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="logOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">account_box</i>
+                        <p>Logs</p>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="logOptions">
+                        @foreach(\App\Http\Helpers::restaurants() as $restaurant)
+                            <a class="dropdown-item" href="{{ route('logs', 'restaurantID='.$restaurant->restaurantID) }}">{{ $restaurant->restaurantName }}</a>
+                        @endforeach
+                    </div>
+                </li>
             @elseif(Auth::user()->role == "MANAGER")
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('list-restaurant') }}">
@@ -79,8 +90,15 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="reservationOptions">
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::pending()) }}">Pending</a>
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::approved()) }}">Approved</a>
-                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Completed</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::checkIn()) }}">Checked In</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Checked Out</a>
                     </div>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('logs') }}">
+                        <i class="material-icons">account_box</i>
+                        <p>Logs</p>
+                    </a>
                 </li>
             @elseif(Auth::user()->role == "USER")
                 <li class="nav-item dropdown">
@@ -91,7 +109,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="reservationOptions">
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::pending()) }}">Pending</a>
                         <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::approved()) }}">Approved</a>
-                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Completed</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::checkIn()) }}">Checked In</a>
+                        <a class="dropdown-item" href="{{ route('list-reservation', \App\Http\Helpers::completed()) }}">Checked Out</a>
                     </div>
                 </li>
             @endif

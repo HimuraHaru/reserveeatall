@@ -7,7 +7,7 @@ use App\Reservation;
 use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Log;
 
 class ReservationController extends Controller
 {
@@ -20,32 +20,75 @@ class ReservationController extends Controller
     {
 
         $restaurant = Restaurant::findOrFail($restaurantID);
-        $user = auth()->id();
+        $manager = User::where('restaurantID', $restaurant->restaurantID)->first();
 
-        $reservation = Reservation::where('userID', $user)
-            ->where('reservationTime', $request['time'])
-            ->where('reservationStatus', 'approved')
-            ->where('reservationDate', $request['datepicker'])
-            ->first();
+        if($manager->contact != null) {
+            $user = auth()->id();
+            $getUser = User::findOrFail($user);
 
-        if($reservation == NULL) {
-            $reserve = new Reservation();
-            $reserve->userID = $user;
-            $reserve->restaurantID = $restaurant->restaurantID;
-            $reserve->reservationMessage = $request['message'];
-            $reserve->reservationSeats = $request['seats'];
-            $reserve->reservationDate = $request['datepicker'];
-            $reserve->reservationTime = $request['time'];
-            $reserve->reservationStatus = Helpers::pending();
-            $reserve->feedbackStatus = Helpers::pending();
-            $reserve->save();
+            $reservation = Reservation::where('userID', $user)
+                ->where('reservationTime', $request['time'])
+                ->where('reservationStatus', 'approved')
+                ->where('reservationDate', $request['datepicker'])
+                ->first();
 
-            swal()->success('Thank you! An sms message will be send if your reservation is approved.');
-            return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+            if($request['seats'] < $restaurant->restaurantSeatsAvail) {
+                if($reservation == NULL) {
+                    $reserve = new Reservation();
+                    $reserve->userID = $user;
+                    $reserve->restaurantID = $restaurant->restaurantID;
+                    $reserve->reservationMessage = $request['message'];
+                    $reserve->reservationSeats = $request['seats'];
+                    $reserve->reservationDate = $request['datepicker'];
+                    $reserve->reservationTime = $request['time'];
+                    $reserve->reservationStatus = Helpers::pending();
+                    $reserve->feedbackStatus = Helpers::pending();
+                    $reserve->save();
+
+                    $getReservationId = Reservation::where('userID', $user)
+                        ->where('restaurantID', $restaurant->restaurantID)
+                        ->where('reservationMessage', $request['message'])
+                        ->where('reservationSeats', $request['seats'])
+                        ->where('reservationDate', $request['datepicker'])
+                        ->where('reservationTime', $request['time'])
+                        ->first();
+
+                    $log = new Log();
+                    $log->reservationID = $getReservationId->reservationID;
+                    $log->restaurantID = $getReservationId->restaurantID;
+                    $log->save();
+
+//                    $nexmo = app('Nexmo\Client');
+//                    $nexmo->message()->send([
+//                        'to'   => $manager->contact,
+//                        'from' => 'Reserve Eat All',
+//                        'text' => 'Hello ' . ucwords($manager->name) . '. There\'s a new reservation with the following details.' .
+//                            ' Name: ' .ucwords($getUser->name). ',' .
+//                            ' Seats: ' .$request['seats']. ',' .
+//                            ' Date: ' .$request['datepicker']. ',' .
+//                            ' Time: ' .Helpers::convertTime($request['time']). ',' .
+//                            ' Message: ' .ucfirst($request['message']) . ' Please review this on the reservation section -> pending.'
+//                    ]);
+
+                    swal()->success('Thank you! An sms message will be send if your reservation is approved.');
+                    return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+                }
+
+                else {
+                    swal()->error('Sorry. You already have an approved schedule within this schedule.');
+                    return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+                }
+            }
+
+            else {
+                swal()->error('Sorry. The seats that you are requesting is too much. The available seats is only ' . $restaurant->restaurantSeatsAvail);
+                return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
+            }
+
         }
 
         else {
-            swal()->error('Sorry. You already have an approved schedule within this schedule.');
+            swal()->error('Sorry. The restaurant is not available for reservation.');
             return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
         }
 
@@ -81,6 +124,20 @@ class ReservationController extends Controller
                 return view('dashboard/reservation/list', compact('reservations', 'category'));
 
             }
+
+            elseif($category == Helpers::checkIn()) {
+
+                $reservations = Reservation::where('userID', Helpers::userID())
+                    ->join('restaurants', 'reservations.restaurantID', '=', 'restaurants.restaurantID')
+                    ->select('reservations.*', 'restaurants.restaurantName')
+                    ->where('reservationStatus', Helpers::checkIn())
+                    ->orderBy('reservationDate', 'desc')
+                    ->paginate(10);
+
+                return view('dashboard/reservation/list', compact('reservations', 'category'));
+
+            }
+
 
             elseif($category == Helpers::completed()) {
                 $reservations = Reservation::where('userID', Helpers::userID())
@@ -121,6 +178,18 @@ class ReservationController extends Controller
                         ->where('reservations.restaurantID', '=', Helpers::managerRestaurantID());
                 })
                     ->where('reservationStatus', Helpers::approved())
+                    ->orWhere('reservationStatus', Helpers::reminded())
+                    ->orderBy('reservationDate', 'desc')
+                    ->paginate(10);
+            }
+
+            elseif($category == Helpers::checkIn()) {
+                $reservations = Reservation::join('users', function ($join) {
+
+                    $join->on('reservations.userID', '=','users.id')
+                        ->where('reservations.restaurantID', '=', Helpers::managerRestaurantID());
+                })
+                    ->where('reservationStatus', Helpers::checkIn())
                     ->orWhere('reservationStatus', Helpers::reminded())
                     ->orderBy('reservationDate', 'desc')
                     ->paginate(10);
@@ -172,7 +241,13 @@ class ReservationController extends Controller
             ]);
         }
 
-        elseif($category == Helpers::approved() && $action == Helpers::completed() && Helpers::checkIfManager()) {
+        elseif($category == Helpers::approved() && $action == Helpers::checkIn() && Helpers::checkIfManager()) {
+            $reservation->reservationStatus = Helpers::checkIn();
+            $reservation->save();
+            swal()->success('Successfully completed!');
+        }
+
+        elseif($category == Helpers::checkIn() && $action == Helpers::completed() && Helpers::checkIfManager()) {
             $reservation->reservationStatus = Helpers::completed();
             $reservation->save();
             swal()->success('Successfully completed!');

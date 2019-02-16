@@ -22,7 +22,7 @@ Route::get('restaurant/view/feedback/{restaurantID}', 'FeedbackController@viewFe
 Route::get('/like/{feedbackID}/restaurant/{restaurantID}/{category}', 'LikeController@likeFeedback')->name('like-feedback');
 
 //Dislike
-Route::get('/dislike/{feedbackID}/restaurant/{restaurantID}/{category}', 'DislikeController@dislikeFeedback')->name('dislike-feedback');
+//Route::get('/dislike/{feedbackID}/restaurant/{restaurantID}/{category}', 'DislikeController@dislikeFeedback')->name('dislike-feedback');
 
 
 Route::prefix('dashboard')->middleware('verified')->group(function () {
@@ -84,6 +84,12 @@ Route::prefix('dashboard')->middleware('verified')->group(function () {
 
         Route::get('/', 'Admin\StatisticsController@index')->name('statistics');
         Route::get('/generate', 'Admin\StatisticsController@generate')->name('generate');
+    });
+
+    //Logs
+    Route::prefix('logs')->group(function () {
+
+        Route::get('/', 'Admin\LogController@index')->name('logs');
     });
 
 });

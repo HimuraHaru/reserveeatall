@@ -21,6 +21,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Ratings</label>
+                                            <select class="form-control" name="rating" required>
+                                                <option disabled selected value="">Click to choose ratings</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Message</label>

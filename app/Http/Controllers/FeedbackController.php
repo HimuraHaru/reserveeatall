@@ -39,6 +39,7 @@ class FeedbackController extends Controller
         if($reservation->feedbackStatus == Helpers::pending()) {
             $feedback = new Feedback();
             $feedback->reservationID = $reservation->reservationID;
+            $feedback->rating = $request['rating'];
             $feedback->feedbackMessage = $request['feedbackMessage'];
             $feedback->userID = Helpers::userID();
             $feedback->likeCount = 0;

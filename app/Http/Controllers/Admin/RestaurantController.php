@@ -103,6 +103,7 @@ class RestaurantController extends Controller
             $restaurant->restaurantAddress = $request['address'];
             $restaurant->openingTime = $request['openingTime'];
             $restaurant->closingTime = $request['closingTime'];
+            $restaurant->restaurantSeatsAvail = $request['restaurantSeatsAvail'];
             $restaurant->restaurantLogo = $fileNameToStore;
             $restaurant->save();
 
@@ -177,6 +178,7 @@ class RestaurantController extends Controller
             $restaurant->restaurantAddress = $request['address'];
             $restaurant->openingTime = $request['openingTime'];
             $restaurant->closingTime = $request['closingTime'];
+            $restaurant->restaurantSeatsAvail = $request['restaurantSeatsAvail'];
             $restaurant->restaurantLogo = $fileNameToStore;
             $restaurant->save();
         }
@@ -207,6 +209,7 @@ class RestaurantController extends Controller
                 $restaurant->restaurantAddress = $request['address'];
                 $restaurant->openingTime = $request['openingTime'];
                 $restaurant->closingTime = $request['closingTime'];
+                $restaurant->restaurantSeatsAvail = $request['restaurantSeatsAvail'];
                 $restaurant->restaurantLogo = $fileNameToStore;
                 $restaurant->save();
             }

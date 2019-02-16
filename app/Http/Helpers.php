@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http;
+use App\Feedback;
+use App\Reservation;
+use App\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 
@@ -100,7 +103,11 @@ class Helpers
     }
 
     public static function checkIn() {
-        return "approved";
+        return "checkedIn";
+    }
+
+    public static function checkOut() {
+        return "checkedOut";
     }
 
     public static function completed() {
@@ -113,6 +120,69 @@ class Helpers
 
     public static function reminded() {
         return "reminded";
+    }
+
+    public static function restaurants() {
+        return Restaurant::all();
+    }
+
+    public static function ratings($restaurantID) {
+        $restaurant = Restaurant::findOrFail($restaurantID);
+        $ratings = [];
+
+        for($i = 1; $i <= 5; $i++) {
+            $feedbacks = Reservation::where('restaurantID', $restaurant->restaurantID)
+                ->where('feedbackStatus', Helpers::completed())
+                ->where('rating', $i)
+                ->join('feedbacks', 'reservations.reservationID', '=', 'feedbacks.reservationID')
+                ->select('feedbacks.rating')
+                ->orderBy('feedbacks.created_at', 'desc')
+                ->get();
+
+            array_push($ratings, $feedbacks);
+        }
+
+        $five = [];
+        $four = [];
+        $three = [];
+        $two = [];
+        $one = [];
+
+        foreach($ratings as $rating) {
+            foreach($rating as $data) {
+                if($data->rating == 5) {
+                    array_push($five, $data->rating);
+                }
+                elseif($data->rating == 4) {
+                    array_push($four, $data->rating);
+                }
+                elseif($data->rating == 3) {
+                    array_push($three, $data->rating);
+                }
+                elseif($data->rating == 2) {
+                    array_push($two, $data->rating);
+                }
+                elseif($data->rating == 1) {
+                    array_push($one, $data->rating);
+                }
+            }
+        }
+
+        /*
+         * Formula used weighted average
+         * Algorithm used:
+         * https://stackoverflow.com/questions/10196579/algorithm-used-to-calculate-5-star-ratings/10196621
+         */
+        $weight = 5*collect($five)->count() + 4*collect($four)->count() + 3*collect($three)->count() + 2*collect($two)->count() + 1*collect($one)->count();
+        $numOfVotes = collect($five)->count() + collect($four)->count() + collect($three)->count() + collect($two)->count() + collect($one)->count();
+        if($weight == 0 && $numOfVotes == 00) {
+            return "No ratings";
+        }
+        else {
+            $total = number_format($weight / $numOfVotes, 1);
+            return $total;
+        }
+
     }
 
 }
