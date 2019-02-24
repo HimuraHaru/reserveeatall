@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="shortcut icon" href="images/star.png" type="favicon/ico" /> -->
+    <meta name="description" content="Reserveeatall is a hyrbrid reservation application for nepo quad restaurants in angeles city pampanga philippines">
+    <meta name="keywords" content="reserve-eatall, reserve, reservation, booking reservation, nepoquad, nepoquadrestaurants, foodreservation, angelescity, thequad, food">
+
 
     <title>
         @yield('title')
@@ -19,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/pricing.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
-
+    <script src="{{ asset('assets/js/rate.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-1.11.2.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.flexslider.min.js') }}"></script>

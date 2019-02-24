@@ -11,7 +11,7 @@
     <section id="pricing" class="pricing">
         <div class="container">
             <br/>
-            <form method="GET">
+            <form class="search" method="GET">
                 <input type="text" name="search" placeholder="Enter restaurant name">
                 <button>SEARCH</button>
             </form>
@@ -21,15 +21,16 @@
                         <div class="col-md-10 col-md-offset-1">
                             <ul id="menu-pricing" class="menu-price">
                                 @foreach(\Illuminate\Support\Facades\Session::get('getData') as $restaurant)
-                                    <li class="item dinner">
+                                    <li class="menus dinner">
                                         <a href="{{ route('view-restaurant', $restaurant->restaurantID) }}">
-                                            <img src="{{ asset('storage/assets/admin/img/restaurants/'.$restaurant->restaurantLogo) }}" class="img-responsive" alt="" >
+                                            <img alt="nepoquad_restaurant_logo"src="{{ asset('storage/assets/admin/img/restaurants/'.$restaurant->restaurantLogo) }}" class="img-responsive" alt="" >
                                         </a>
-
+                                        
                                         <h2 class="white">{{ $restaurant->restaurantName }}</h2>
                                         <h3>Opens {{ \App\Http\Helpers::operatingHours($restaurant->openingTime, $restaurant->closingTime) }}</h3>
                                         <h4>{{ $restaurant->restaurantAddress }}</h4>
                                     </li>
+                                    
                                 @endforeach
                             </ul>
                         </div>
@@ -48,15 +49,21 @@
                     <div class="col-md-10 col-md-offset-1">
                         <ul id="menu-pricing" class="menu-price">
                             @foreach($restaurants as $restaurant)
-                                <li class="item dinner">
+                                <li class="menus dinner">
                                     <a href="{{ route('view-restaurant', $restaurant->restaurantID) }}">
-                                        <img src="{{ asset('storage/assets/admin/img/restaurants/'.$restaurant->restaurantLogo) }}" class="img-responsive" alt="" >
+                                        <img alt="nepoquad_restaurant_logo" src="{{ asset('storage/assets/admin/img/restaurants/'.$restaurant->restaurantLogo) }}" class="img-responsive" alt="" >
                                     </a>
 
                                     <h2 class="white">{{ $restaurant->restaurantName }}</h2>
                                     <h3>Opens {{ \App\Http\Helpers::operatingHours($restaurant->openingTime, $restaurant->closingTime) }}</h3>
                                     <h4>{{ $restaurant->restaurantAddress }}</h4>
                                     <br/><br/>
+                                    <div class="star_alignment_container">
+
+
+<!-- Call the JavaScript Function with Percentage of your rating (0-100)-->
+<script>rate(60);</script>
+</div>
                                     <h4>Stars: {{ \App\Http\Helpers::ratings($restaurant->restaurantID) }}</h4>
                                 </li>
                             @endforeach
@@ -71,6 +78,7 @@
 
 <!--Indexing purpose-->
 <section id="search"></section>
+
 
     
     @include('includes.about')
