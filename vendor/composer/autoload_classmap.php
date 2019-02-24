@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\AccountController' => $baseDir . '/app/Http/Controllers/AccountController.php',
     'App\\Http\\Controllers\\Admin\\AccountController' => $baseDir . '/app/Http/Controllers/Admin/AccountController.php',
     'App\\Http\\Controllers\\Admin\\FoodController' => $baseDir . '/app/Http/Controllers/Admin/FoodController.php',
+    'App\\Http\\Controllers\\Admin\\LogController' => $baseDir . '/app/Http/Controllers/Admin/LogController.php',
     'App\\Http\\Controllers\\Admin\\RestaurantController' => $baseDir . '/app/Http/Controllers/Admin/RestaurantController.php',
     'App\\Http\\Controllers\\Admin\\StatisticsController' => $baseDir . '/app/Http/Controllers/Admin/StatisticsController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

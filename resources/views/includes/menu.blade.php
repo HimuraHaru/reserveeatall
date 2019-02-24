@@ -25,7 +25,7 @@
 
         <div class="container">
             <br/>
-            <form method="GET">
+            <form class="search" method="GET">
                 <input type="text" name="search" placeholder="Enter food name">
                 <button>SEARCH</button>
             </form>
@@ -38,7 +38,7 @@
                                 <li class="item {{ $food->foodCategory }}">
 
                                     <a href="#">
-                                        <img src="{{ asset('storage/assets/admin/img/restaurants/foods/' . $food->foodImage ) }}" class="img-responsive" alt="Food" >
+                                        <img alt="nepoquad_restaurant_food_image" src="{{ asset('storage/assets/admin/img/restaurants/foods/' . $food->foodImage ) }}" class="img-responsive" alt="Food" >
                                         <div class="menu-desc text-center">
                                                 <span>
                                                     <h3>{{ $food->foodName }}</h3>
