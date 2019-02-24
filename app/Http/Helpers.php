@@ -180,7 +180,7 @@ class Helpers
         }
         else {
             $total = number_format($weight / $numOfVotes, 1);
-            return $total;
+            return $total*20;
         }
 
     }

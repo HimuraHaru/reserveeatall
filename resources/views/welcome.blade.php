@@ -59,12 +59,9 @@
                                     <h4>{{ $restaurant->restaurantAddress }}</h4>
                                     <br/><br/>
                                     <div class="star_alignment_container">
-
-
-<!-- Call the JavaScript Function with Percentage of your rating (0-100)-->
-<script>rate(60);</script>
-</div>
-                                    <h4>Stars: {{ \App\Http\Helpers::ratings($restaurant->restaurantID) }}</h4>
+                                        <!-- Call the JavaScript Function with Percentage of your rating (0-100)-->
+                                        <script>rate({{ \App\Http\Helpers::ratings($restaurant->restaurantID) }});</script>
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>
