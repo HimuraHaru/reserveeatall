@@ -976,7 +976,7 @@ footer a:hover
    }
    
    /* ===========================
-	  ====== Medua Query for Search Box ====== 
+	  ====== Medua Query ====== 
 	  =========================== */
    
    @media only screen and (min-width : 150px) and (max-width : 780px)
@@ -990,10 +990,24 @@ footer a:hover
    
    }
 
-.star_alignment_container{
+	.star_alignment_container{
 	text-align: -webkit-auto;
     padding-left: 34%;
-}
+	}
 
 
+
+
+	@media(max-width : 414px){
+	#menu-pricing .menus {
+	margin-right: 0;
+	}
+	}
+
+	@media(max-width : 320px){
+	.star_alignment_container {
+	text-align: -webkit-auto;
+	padding-left: 31%;
+	}
+	}
 

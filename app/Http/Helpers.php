@@ -176,11 +176,11 @@ class Helpers
         $weight = 5*collect($five)->count() + 4*collect($four)->count() + 3*collect($three)->count() + 2*collect($two)->count() + 1*collect($one)->count();
         $numOfVotes = collect($five)->count() + collect($four)->count() + collect($three)->count() + collect($two)->count() + collect($one)->count();
         if($weight == 0 && $numOfVotes == 00) {
-            return "No ratings";
+            return 0;
         }
         else {
             $total = number_format($weight / $numOfVotes, 1);
-            return $total;
+            return $total*20;
         }
 
     }
