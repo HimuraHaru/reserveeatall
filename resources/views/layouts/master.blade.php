@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="shortcut icon" href="images/star.png" type="favicon/ico" /> -->
-    <meta name="description" content="Reserveeatall is a hyrbrid reservation application for nepo quad restaurants in angeles city pampanga philippines">
-    <meta name="keywords" content="reserve-eatall, reserve, reservation, booking reservation, nepoquad, nepoquadrestaurants, foodreservation, angelescity, thequad, food">
+    <meta name="description" content="Reserve Eat All is a hyrbrid reservation application for nepo quad restaurants in angeles city pampanga philippines">
+    <meta name="keywords" content="reserve-eatall, Reserve Eat All NepoQuad, reserve, reservation, booking reservation, nepoquad, nepoquadrestaurants, foodreservation, angelescity, thequad, food">
 
 
     <title>
