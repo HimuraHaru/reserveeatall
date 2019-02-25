@@ -68,7 +68,7 @@ class ReservationController extends Controller
                            ' Date: ' .$request['datepicker']. ',' .
                            ' Time: ' .Helpers::convertTime($request['time']). ',' .
                            ' Message: ' .ucfirst($request['message']) . ' Please review this on the reservation section -> pending.'
-//                    ]);
+                   ]);
 
                     swal()->success('Thank you! An sms message will be send if your reservation is approved.');
                     return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
