@@ -58,16 +58,16 @@ class ReservationController extends Controller
                     $log->restaurantID = $getReservationId->restaurantID;
                     $log->save();
 
-//                    $nexmo = app('Nexmo\Client');
-//                    $nexmo->message()->send([
-//                        'to'   => $manager->contact,
-//                        'from' => 'Reserve Eat All',
-//                        'text' => 'Hello ' . ucwords($manager->name) . '. There\'s a new reservation with the following details.' .
-//                            ' Name: ' .ucwords($getUser->name). ',' .
-//                            ' Seats: ' .$request['seats']. ',' .
-//                            ' Date: ' .$request['datepicker']. ',' .
-//                            ' Time: ' .Helpers::convertTime($request['time']). ',' .
-//                            ' Message: ' .ucfirst($request['message']) . ' Please review this on the reservation section -> pending.'
+                   $nexmo = app('Nexmo\Client');
+                   $nexmo->message()->send([
+                       'to'   => $manager->contact,
+                       'from' => 'Reserve Eat All',
+                       'text' => 'Hello ' . ucwords($manager->name) . '. There\'s a new reservation with the following details.' .
+                           ' Name: ' .ucwords($getUser->name). ',' .
+                           ' Seats: ' .$request['seats']. ',' .
+                           ' Date: ' .$request['datepicker']. ',' .
+                           ' Time: ' .Helpers::convertTime($request['time']). ',' .
+                           ' Message: ' .ucfirst($request['message']) . ' Please review this on the reservation section -> pending.'
 //                    ]);
 
                     swal()->success('Thank you! An sms message will be send if your reservation is approved.');
