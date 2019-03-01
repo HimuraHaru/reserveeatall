@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <input type="text" onfocus="(this.type='date')" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date" disabled>
                                     </div>
-                                       <div class="form-group">
+                                       <div class="form-group form-group form-control reserve-form">
                                     Available Seats: {{ $restaurant->restaurantSeatsAvail }}
                                         </div>
                                 </div>
