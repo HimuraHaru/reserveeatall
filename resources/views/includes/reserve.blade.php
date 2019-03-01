@@ -38,6 +38,9 @@
                                     <div class="form-group">
                                         <input type="text" onfocus="(this.type='date')" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date" disabled>
                                     </div>
+                                       <div class="form-group">
+                                    Available Seats: {{ $restaurant->restaurantSeatsAvail }}
+                                        </div>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
@@ -79,12 +82,16 @@
                                             <input type="text" onfocus="(this.type='date')" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date" min="{{ \Carbon\Carbon::now()->toDateString() }}">
                                             {{--<input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Date">--}}
                                         </div>
+                                        <div class="form-group form-group form-control reserve-form">
+                                    Available Seats: {{ $restaurant->restaurantSeatsAvail }}
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input type="number" class="form-control reserve-form empty iconified" name="seats" id="seats" required="required" placeholder="&#xf0c0;  Number of seats">
+                                            <input type="number" class="form-control reserve-form empty iconified" name="seats" id="seats" min="1" required="required" placeholder="&#xf0c0;  Number of seats">
                                         </div>
+                                        
                                         <div class="form-group">
                                             <select type="text" class="form-control reserve-form empty iconified" name="time" id="time" required="required" placeholder="&#xf017;  Time" required>
                                                 <option selected disabled>Choose your preferred time.</option>
@@ -94,7 +101,8 @@
                                             </select>
                                             {{--<input type="text" onfocus="(this.type='time')" class="form-control reserve-form empty iconified" name="time" id="time" required="required" placeholder="&#xf017;  Time">--}}
                                         </div>
-                                    </div>
+
+                                    </div>                       
 
                                     <div class="col-md-12 col-sm-12">
                                         <textarea type="text" name="message" class="form-control reserve-form empty iconified" id="message" rows="3" required="required" placeholder="  &#xf086;  We're listening"></textarea>

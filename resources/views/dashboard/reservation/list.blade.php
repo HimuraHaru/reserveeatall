@@ -102,6 +102,9 @@
                                         <th>
                                             Status
                                         </th>
+                                        <th>
+                                            Table Number
+                                        </th>
                                         @if($category != \App\Http\Helpers::completed())
                                         <th>
                                             Action
@@ -132,9 +135,28 @@
                                                         {{ ucwords($reservation->reservationStatus) }}
                                                     @endif
                                                 </td>
+                                                
+                                                <td width="20%">
+                                                @if($reservation->reservationStatus == \App\Http\Helpers::pending())
+                                                <form name="myForm" method="POST" action="{{ route('list-reservation-table-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::approved(), $reservation->reservationID] ) }}">
+                                            @csrf
+                                                <input type="number" class="form-control" name="reservationTable" min="1" max="100"  required="required" placeholder="Table Number">
+                                                @elseif($reservation->reservationStatus == \App\Http\Helpers::approved())
+                                                {{ $reservation->reservationTable }}
+
+                                                @elseif($reservation->reservationStatus == \App\Http\Helpers::checkin())
+                                                {{ $reservation->reservationTable }}
+
+                                                @elseif($reservation->reservationStatus == \App\Http\Helpers::completed())
+                                                {{ $reservation->reservationTable }}
+
+                                                @endif
+                                                </td>
                                                 <td>
+                                               
                                                 @if($category == \App\Http\Helpers::pending())
-                                                <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::approved(), $reservation->reservationID] ) }}">Approve / </a>
+                                                <a href="#" onclick="document.forms['myForm'].submit();">Approve / </a>
+                                                </form>
                                                 <a href="{{ route('list-reservation-post', [\App\Http\Helpers::pending(), \App\Http\Helpers::canceled(), $reservation->reservationID] ) }}">Cancel</a>
                                                 @elseif($category == \App\Http\Helpers::approved())
                                                 <a href="{{ route('list-reservation-post', [\App\Http\Helpers::approved(), \App\Http\Helpers::checkIn(), $reservation->reservationID] ) }}">Check In </a>

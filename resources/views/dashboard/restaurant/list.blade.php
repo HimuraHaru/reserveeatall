@@ -19,6 +19,9 @@
                                             Name
                                         </th>
                                         <th>
+                                            Seats Available
+                                        </th>
+                                        <th>
                                             Address
                                         </th>
                                         <th>
@@ -33,6 +36,9 @@
                                             <tr>
                                                 <td>
                                                     {{ $restaurant->restaurantName }}
+                                                </td>
+                                                <td>
+                                                    {{ $restaurant->restaurantSeatsAvail }}
                                                 </td>
                                                 <td>
                                                     {{ $restaurant->restaurantAddress }}
@@ -78,6 +84,9 @@
                                             Name
                                         </th>
                                         <th>
+                                            Seats Available
+                                        </th>
+                                        <th>
                                             Address
                                         </th>
                                         <th>
@@ -92,6 +101,9 @@
                                                 <td>
                                                     {{ $restaurant->restaurantName }}
                                                 </td>
+                                                <td>
+                                                    {{ $restaurant->restaurantSeatsAvail }}
+                                                </td>    
                                                 <td>
                                                     {{ $restaurant->restaurantAddress }}
                                                 </td>

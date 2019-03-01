@@ -96,7 +96,7 @@ class CheckReservation extends Command
                     'text' => 'Hello ' . ucwords($user->name) . '. Your reservation in ' . $reservation->reservationDate . ', has been canceled.'
                 ]);
 
-                $reservation->reservationStatus = Helpers::canceled();
+                $reservation->reservationStatus = Helpers::late();
                 $reservation->save();
             }
 

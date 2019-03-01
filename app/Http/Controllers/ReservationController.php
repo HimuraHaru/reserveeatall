@@ -45,6 +45,7 @@ class ReservationController extends Controller
                     $reserve->feedbackStatus = Helpers::pending();
                     $reserve->save();
 
+
                     $getReservationId = Reservation::where('userID', $user)
                         ->where('restaurantID', $restaurant->restaurantID)
                         ->where('reservationMessage', $request['message'])
@@ -68,7 +69,7 @@ class ReservationController extends Controller
                            ' Date: ' .$request['datepicker']. ',' .
                            ' Time: ' .Helpers::convertTime($request['time']). ',' .
                            ' Message: ' .ucfirst($request['message']) . ' Please review this on the reservation section -> pending.'
-                   ]);
+                   ]);  
 
                     swal()->success('Thank you! An sms message will be send if your reservation is approved.');
                     return redirect('/restaurant/' . $restaurantID . '#referenceUrl=reserve');
@@ -210,23 +211,39 @@ class ReservationController extends Controller
         }
     }
 
-    public function reservationListPost($category, $action, $reservationID) {
+    public function reservationListPost(Request $request, $category, $action, $reservationID) {
 
+        $request->validate([
+            'reservationTable' => 'int',
+        ]);
+        
         $reservation = Reservation::findOrFail($reservationID);
         $user = User::findOrFail($reservation->userID);
         $restaurant = Restaurant::findOrFail($reservation->restaurantID);
-        $nexmo = app('Nexmo\Client');
+
+        $table = $request['reservationTable'];
+      //  $nexmo = app('Nexmo\Client');
 
         if($category == Helpers::pending() && $action == Helpers::approved() && Helpers::checkIfManager()) {
+            $reservation->reservationTable = $table;
             $reservation->reservationStatus = Helpers::approved();
             $reservation->save();
+
+            $reservedSeats = $reservation->reservationSeats; //seats reserved
+            $getAvailSeats = $restaurant->restaurantSeatsAvail; //available seats
+            $updatedSeats = $getAvailSeats - $reservedSeats; // get new number of seats
+
+            $restaurant->restaurantSeatsAvail = $updatedSeats;
+            $restaurant->save();
+
+
             swal()->success('Successfully approved!');
 
-            $nexmo->message()->send([
+           $nexmo->message()->send([
                 'to'   => $user->contact,
                 'from' => 'Reserve Eat All',
                 'text' => 'Hello ' . ucwords($user->name) . '. Your reservation has been approved. See you on ' . $reservation->reservationDate . ', ' . Helpers::convertTime($reservation->reservationTime)
-            ]);
+            ]); 
         }
 
         elseif($category == Helpers::pending() && $action == Helpers::canceled()) {
@@ -238,18 +255,33 @@ class ReservationController extends Controller
                 'to'   => $user->contact,
                 'from' => 'Reserve Eat All',
                 'text' => 'Hello ' . ucwords($user->name) . ' Sorry your reservation has been canceled.'
-            ]);
+            ]); 
         }
 
         elseif($category == Helpers::approved() && $action == Helpers::checkIn() && Helpers::checkIfManager()) {
             $reservation->reservationStatus = Helpers::checkIn();
             $reservation->save();
             swal()->success('Successfully completed!');
+
+            $nexmo->message()->send([
+                'to'   => $user->contact,
+                'from' => 'Reserve Eat All',
+                'text' => 'Hello ' . ucwords($user->name) . ' You have successfully checked in. Enjoy!'
+            ]); 
+            
         }
 
         elseif($category == Helpers::checkIn() && $action == Helpers::completed() && Helpers::checkIfManager()) {
+            $reservedSeats = $reservation->reservationSeats;
+            $restaurantSeats = $restaurant->restaurantSeatsAvail;
+            $updatedSeats = $restaurantSeats + $reservedSeats;
+
             $reservation->reservationStatus = Helpers::completed();
             $reservation->save();
+
+            $restaurant->restaurantSeatsAvail = $updatedSeats;
+            $restaurant->save();
+
             swal()->success('Successfully completed!');
         }
 

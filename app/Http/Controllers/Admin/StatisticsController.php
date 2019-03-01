@@ -39,27 +39,8 @@ class StatisticsController extends Controller
 
             $date = Carbon::createFromDate($request['year'], $request['month'])->format('M. Y');
 
-            $male = 0;
 
-            foreach($reservations as $reservation) {
-                $user = User::where('id', $reservation->userID)->where('gender', 'Male')->count();
-
-                if($user != null) {
-                    $male += 1;
-                }
-            }
-
-            $female = 0;
-
-            foreach($reservations as $reservation) {
-                $user = User::where('id', $reservation->userID)->where('gender', 'Female')->count();
-
-                if($user != null) {
-                    $female += 1;
-                }
-            }
-
-            return view('dashboard.statistic.statistics', compact('reservations', 'male', 'restaurant', 'female', 'date'));
+            return view('dashboard.statistic.statistics', compact('reservations', 'restaurant', 'date'));
         }
 
         elseif (Helpers::checkIfManager()) {
@@ -70,27 +51,8 @@ class StatisticsController extends Controller
 
             $date = Carbon::createFromDate($request['year'], $request['month'])->format('M. Y');
 
-            $male = 0;
 
-            foreach($reservations as $reservation) {
-                $user = User::where('id', $reservation->userID)->where('gender', 'Male')->count();
-
-                if($user != null) {
-                    $male += 1;
-                }
-            }
-
-            $female = 0;
-
-            foreach($reservations as $reservation) {
-                $user = User::where('id', $reservation->userID)->where('gender', 'Female')->count();
-
-                if($user != null) {
-                    $female += 1;
-                }
-            }
-
-            return view('dashboard.statistic.statistics', compact('reservations', 'male', 'restaurant', 'female', 'date'));
+            return view('dashboard.statistic.statistics', compact('reservations', 'restaurant', 'date'));
         }
 
         else {

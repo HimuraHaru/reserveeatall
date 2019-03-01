@@ -67,6 +67,7 @@ Route::prefix('dashboard')->middleware('verified')->group(function () {
     Route::prefix('reservation')->group(function () {
 
         Route::get('/list/{category}', 'ReservationController@reservationList')->name('list-reservation');
+        Route::post('/list/{category}/{action}/{reservationID}', 'ReservationController@reservationListPost')->name('list-reservation-table-post');
         Route::get('/list/{category}/{action}/{reservationID}', 'ReservationController@reservationListPost')->name('list-reservation-post');
     });
 

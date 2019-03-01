@@ -117,9 +117,30 @@ class Helpers
     public static function canceled() {
         return "canceled";
     }
+    
+    public static function late() {
+        return "late";
+    }
+
+    public static function statistics() {
+
+        $canceled = Reservation::where('reservationStatus', 'canceled')->get();
+        $late = Reservation::where('reservationStatus', 'late')->get();
+
+        $totalCanceled = $canceled->count();
+        $totalLate = $late->count();
+
+        return $totalCanceled + $totalLate;
+    }
 
     public static function reminded() {
         return "reminded";
+    }
+
+    public static function feedbackRating($rating){
+        $userRatings = $rating*20;
+
+        return $userRatings;
     }
 
     public static function restaurants() {

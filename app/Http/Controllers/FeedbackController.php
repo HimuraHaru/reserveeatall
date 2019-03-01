@@ -133,7 +133,7 @@ class FeedbackController extends Controller
             $feedbacks = Reservation::where('restaurantID', $restaurant->restaurantID)
                 ->where('feedbackStatus', Helpers::completed())
                 ->join('feedbacks', 'reservations.reservationID', '=', 'feedbacks.reservationID')
-                ->select('reservations.*', 'feedbacks.feedbackMessage', 'feedbacks.created_at', 'feedbacks.feedbackID')
+                ->select('reservations.*', 'feedbacks.feedbackMessage', 'feedbacks.created_at', 'feedbacks.feedbackID', 'feedbacks.rating')
                 ->orderBy('feedbacks.created_at', 'desc')
                 ->paginate(10);
         }

@@ -36,6 +36,7 @@
                             <div class="menu-item">
                                 <h3 class="menu-title">{{ ucwords(\App\User::findOrFail($feedback->userID)->name) }}</h3>
                                 <p class="menu-about">{{ $feedback->created_at->format('M. d, Y') }}</p>
+                                <script>rate({{ \App\Http\Helpers::feedbackRating($feedback->rating) }});</script>
                                 <p class="menu-about">{{ $feedback->feedbackMessage }}</p>
 
                                 <div class="menu-system">

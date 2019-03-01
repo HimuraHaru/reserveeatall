@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="http://reserve-eatall.com/">
-                    <img id="logo" src="../assets/images/Logo_main.png" class="logo img-responsive">
+                    <img id="logo" src="../../../assets/images/Logo_main.png" class="logo img-responsive">
                 </a>
             </div>
 

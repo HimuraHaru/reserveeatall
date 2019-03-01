@@ -22,16 +22,16 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class=" text-primary">
-                                            <th>Male</th>
-                                            <th>Female</th>
+
                                             <th>Completed</th>
-                                            <th>Canceled</th>
+                                            <th>Canceled by the System</th>
+                                            <th>Canceled by the Manager</th>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{ $male }}</td>
-                                                <td>{{ $female }}</td>
+
                                                 <td>{{ $reservations->where('reservationStatus', 'completed')->count() }}</td>
+                                                <td>{{ $reservations->where('reservationStatus', 'late')->count() }}</td>
                                                 <td>{{ $reservations->where('reservationStatus', 'canceled')->count() }}</td>
                                             </tr>
                                         </tbody>
@@ -51,11 +51,9 @@
                                 // Draw the chart and set the chart values
                                 function drawChart() {
                                     var data = google.visualization.arrayToDataTable([
-                                        ['Gender', 'Gender'],
-                                        ['Male', {{ $male }}],
-                                        ['Female', {{ $female }}],
+                                        ['Stats', 'Stats'],
                                         ['Completed', {{ $reservations->where('reservationStatus', 'completed')->count() }}],
-                                        ['Canceled', {{ $reservations->where('reservationStatus', 'canceled')->count() }}],
+                                        ['Canceled', {{ \App\Http\Helpers::statistics() }}],
                                     ]);
 
                                     // Optional; add a title and set the width and height of the chart
