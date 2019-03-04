@@ -222,7 +222,7 @@ class ReservationController extends Controller
         $restaurant = Restaurant::findOrFail($reservation->restaurantID);
 
         $table = $request['reservationTable'];
-      //  $nexmo = app('Nexmo\Client');
+        $nexmo = app('Nexmo\Client');
 
         if($category == Helpers::pending() && $action == Helpers::approved() && Helpers::checkIfManager()) {
             $reservation->reservationTable = $table;
