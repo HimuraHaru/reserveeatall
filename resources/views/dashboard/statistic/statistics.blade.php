@@ -24,8 +24,8 @@
                                         <thead class=" text-primary">
 
                                             <th>Completed</th>
-                                            <th>Canceled by the System</th>
-                                            <th>Canceled by the Manager</th>
+                                            <th>Cancelled</th>
+                                            <th>Cancelled by the Manager</th>
                                         </thead>
                                         <tbody>
                                             <tr>

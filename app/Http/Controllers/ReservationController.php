@@ -32,7 +32,7 @@ class ReservationController extends Controller
                 ->where('reservationDate', $request['datepicker'])
                 ->first();
 
-            if($request['seats'] < $restaurant->restaurantSeatsAvail) {
+            if($request['seats'] <= $restaurant->restaurantSeatsAvail) {
                 if($reservation == NULL) {
                     $reserve = new Reservation();
                     $reserve->userID = $user;
